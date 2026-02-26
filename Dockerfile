@@ -13,8 +13,11 @@ RUN npm install
 # Copy rest of project
 COPY . .
 
+# Regenerate Prisma client from current schema
+RUN npx prisma generate
+
 # Build Next.js
-RUN npm run build
+RUN NODE_OPTIONS="--max-old-space-size=512" npm run build
 
 # Expose port
 EXPOSE 3000
