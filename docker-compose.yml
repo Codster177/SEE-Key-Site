@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web:
-    build: .
+    image: codster177/see-ket-site:latest
     ports:
       - "127.0.0.1:3000:3000"
     volumes:
