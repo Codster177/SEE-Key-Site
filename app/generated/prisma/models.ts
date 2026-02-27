@@ -9,4 +9,6 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/Entry'
+export type * from './models/Admin'
+export type * from './models/Config'
 export type * from './commonInputTypes'

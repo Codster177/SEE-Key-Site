@@ -51,7 +51,9 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Entry: 'Entry'
+  Entry: 'Entry',
+  Admin: 'Admin',
+  Config: 'Config'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -71,10 +73,28 @@ export const EntryScalarFieldEnum = {
   id: 'id',
   publicKey: 'publicKey',
   teamName: 'teamName',
+  ipIncrement: 'ipIncrement',
   createdAt: 'createdAt'
 } as const
 
 export type EntryScalarFieldEnum = (typeof EntryScalarFieldEnum)[keyof typeof EntryScalarFieldEnum]
+
+
+export const AdminScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  password: 'password'
+} as const
+
+export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
+
+
+export const ConfigScalarFieldEnum = {
+  key: 'key',
+  value: 'value'
+} as const
+
+export type ConfigScalarFieldEnum = (typeof ConfigScalarFieldEnum)[keyof typeof ConfigScalarFieldEnum]
 
 
 export const SortOrder = {

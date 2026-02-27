@@ -28,16 +28,19 @@ export type AggregateEntry = {
 
 export type EntryAvgAggregateOutputType = {
   id: number | null
+  ipIncrement: number | null
 }
 
 export type EntrySumAggregateOutputType = {
   id: number | null
+  ipIncrement: number | null
 }
 
 export type EntryMinAggregateOutputType = {
   id: number | null
   publicKey: string | null
   teamName: string | null
+  ipIncrement: number | null
   createdAt: Date | null
 }
 
@@ -45,6 +48,7 @@ export type EntryMaxAggregateOutputType = {
   id: number | null
   publicKey: string | null
   teamName: string | null
+  ipIncrement: number | null
   createdAt: Date | null
 }
 
@@ -52,6 +56,7 @@ export type EntryCountAggregateOutputType = {
   id: number
   publicKey: number
   teamName: number
+  ipIncrement: number
   createdAt: number
   _all: number
 }
@@ -59,16 +64,19 @@ export type EntryCountAggregateOutputType = {
 
 export type EntryAvgAggregateInputType = {
   id?: true
+  ipIncrement?: true
 }
 
 export type EntrySumAggregateInputType = {
   id?: true
+  ipIncrement?: true
 }
 
 export type EntryMinAggregateInputType = {
   id?: true
   publicKey?: true
   teamName?: true
+  ipIncrement?: true
   createdAt?: true
 }
 
@@ -76,6 +84,7 @@ export type EntryMaxAggregateInputType = {
   id?: true
   publicKey?: true
   teamName?: true
+  ipIncrement?: true
   createdAt?: true
 }
 
@@ -83,6 +92,7 @@ export type EntryCountAggregateInputType = {
   id?: true
   publicKey?: true
   teamName?: true
+  ipIncrement?: true
   createdAt?: true
   _all?: true
 }
@@ -177,6 +187,7 @@ export type EntryGroupByOutputType = {
   id: number
   publicKey: string
   teamName: string
+  ipIncrement: number
   createdAt: Date
   _count: EntryCountAggregateOutputType | null
   _avg: EntryAvgAggregateOutputType | null
@@ -207,6 +218,7 @@ export type EntryWhereInput = {
   id?: Prisma.IntFilter<"Entry"> | number
   publicKey?: Prisma.StringFilter<"Entry"> | string
   teamName?: Prisma.StringFilter<"Entry"> | string
+  ipIncrement?: Prisma.IntFilter<"Entry"> | number
   createdAt?: Prisma.DateTimeFilter<"Entry"> | Date | string
 }
 
@@ -214,23 +226,26 @@ export type EntryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   publicKey?: Prisma.SortOrder
   teamName?: Prisma.SortOrder
+  ipIncrement?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type EntryWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  publicKey?: string
   AND?: Prisma.EntryWhereInput | Prisma.EntryWhereInput[]
   OR?: Prisma.EntryWhereInput[]
   NOT?: Prisma.EntryWhereInput | Prisma.EntryWhereInput[]
-  publicKey?: Prisma.StringFilter<"Entry"> | string
   teamName?: Prisma.StringFilter<"Entry"> | string
+  ipIncrement?: Prisma.IntFilter<"Entry"> | number
   createdAt?: Prisma.DateTimeFilter<"Entry"> | Date | string
-}, "id">
+}, "id" | "publicKey">
 
 export type EntryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   publicKey?: Prisma.SortOrder
   teamName?: Prisma.SortOrder
+  ipIncrement?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.EntryCountOrderByAggregateInput
   _avg?: Prisma.EntryAvgOrderByAggregateInput
@@ -246,12 +261,14 @@ export type EntryScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Entry"> | number
   publicKey?: Prisma.StringWithAggregatesFilter<"Entry"> | string
   teamName?: Prisma.StringWithAggregatesFilter<"Entry"> | string
+  ipIncrement?: Prisma.IntWithAggregatesFilter<"Entry"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Entry"> | Date | string
 }
 
 export type EntryCreateInput = {
   publicKey: string
   teamName: string
+  ipIncrement: number
   createdAt?: Date | string
 }
 
@@ -259,12 +276,14 @@ export type EntryUncheckedCreateInput = {
   id?: number
   publicKey: string
   teamName: string
+  ipIncrement: number
   createdAt?: Date | string
 }
 
 export type EntryUpdateInput = {
   publicKey?: Prisma.StringFieldUpdateOperationsInput | string
   teamName?: Prisma.StringFieldUpdateOperationsInput | string
+  ipIncrement?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -272,6 +291,7 @@ export type EntryUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   publicKey?: Prisma.StringFieldUpdateOperationsInput | string
   teamName?: Prisma.StringFieldUpdateOperationsInput | string
+  ipIncrement?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -279,12 +299,14 @@ export type EntryCreateManyInput = {
   id?: number
   publicKey: string
   teamName: string
+  ipIncrement: number
   createdAt?: Date | string
 }
 
 export type EntryUpdateManyMutationInput = {
   publicKey?: Prisma.StringFieldUpdateOperationsInput | string
   teamName?: Prisma.StringFieldUpdateOperationsInput | string
+  ipIncrement?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -292,6 +314,7 @@ export type EntryUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   publicKey?: Prisma.StringFieldUpdateOperationsInput | string
   teamName?: Prisma.StringFieldUpdateOperationsInput | string
+  ipIncrement?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -299,17 +322,20 @@ export type EntryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   publicKey?: Prisma.SortOrder
   teamName?: Prisma.SortOrder
+  ipIncrement?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type EntryAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  ipIncrement?: Prisma.SortOrder
 }
 
 export type EntryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   publicKey?: Prisma.SortOrder
   teamName?: Prisma.SortOrder
+  ipIncrement?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -317,19 +343,17 @@ export type EntryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   publicKey?: Prisma.SortOrder
   teamName?: Prisma.SortOrder
+  ipIncrement?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type EntrySumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  ipIncrement?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -340,12 +364,17 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
 
 
 export type EntrySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   publicKey?: boolean
   teamName?: boolean
+  ipIncrement?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["entry"]>
 
@@ -353,6 +382,7 @@ export type EntrySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   publicKey?: boolean
   teamName?: boolean
+  ipIncrement?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["entry"]>
 
@@ -360,6 +390,7 @@ export type EntrySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   publicKey?: boolean
   teamName?: boolean
+  ipIncrement?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["entry"]>
 
@@ -367,10 +398,11 @@ export type EntrySelectScalar = {
   id?: boolean
   publicKey?: boolean
   teamName?: boolean
+  ipIncrement?: boolean
   createdAt?: boolean
 }
 
-export type EntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "publicKey" | "teamName" | "createdAt", ExtArgs["result"]["entry"]>
+export type EntryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "publicKey" | "teamName" | "ipIncrement" | "createdAt", ExtArgs["result"]["entry"]>
 
 export type $EntryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Entry"
@@ -379,6 +411,7 @@ export type $EntryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     id: number
     publicKey: string
     teamName: string
+    ipIncrement: number
     createdAt: Date
   }, ExtArgs["result"]["entry"]>
   composites: {}
@@ -806,6 +839,7 @@ export interface EntryFieldRefs {
   readonly id: Prisma.FieldRef<"Entry", 'Int'>
   readonly publicKey: Prisma.FieldRef<"Entry", 'String'>
   readonly teamName: Prisma.FieldRef<"Entry", 'String'>
+  readonly ipIncrement: Prisma.FieldRef<"Entry", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Entry", 'DateTime'>
 }
     
