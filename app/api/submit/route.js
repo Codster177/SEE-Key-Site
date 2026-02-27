@@ -1,14 +1,12 @@
 import { NextResponse } from "next/server";
+import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import { PrismaClient } from "@/app/generated/prisma/client";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
-import { createClient } from "@libsql/client";
 
 let prisma;
 
 function getPrisma() {
   if (!prisma) {
-    const libsql = createClient({ url: process.env.DATABASE_URL });
-    const adapter = new PrismaLibSql(libsql);
+    const adapter = new PrismaBetterSqlite3({url: "file:./data/dev.db"});
     prisma = new PrismaClient({ adapter });
   }
   return prisma;

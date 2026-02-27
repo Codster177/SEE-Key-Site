@@ -16,6 +16,9 @@ COPY . .
 # Regenerate Prisma client from current schema
 RUN npx prisma generate
 
+# Make DATABASE_URL available at build time so webpack doesn't replace it with undefined
+ENV DATABASE_URL=file:/app/data/dev.db
+
 # Build Next.js
 RUN NODE_OPTIONS="--max-old-space-size=512" npm run build
 
