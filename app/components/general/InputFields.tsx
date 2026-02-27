@@ -18,7 +18,7 @@ const InputFields = () => {
 
     disableButton = true;
 
-    await fetch("/api/submit", {
+    const res = await fetch("/api/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,7 +29,13 @@ const InputFields = () => {
       }),
     });
 
-    alert("Submitted!");
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Submitted!");
+    } else {
+      alert("Submission failed. Please try again.");
+    }
   };
 
   return (
