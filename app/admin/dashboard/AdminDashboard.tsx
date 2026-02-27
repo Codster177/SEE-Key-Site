@@ -30,6 +30,7 @@ export default function AdminDashboard() {
   const [formError, setFormError] = useState("");
   const [nextIpValue, setNextIpValue] = useState("");
   const [ipMsg, setIpMsg] = useState("");
+  const [copiedId, setCopiedId] = useState<number | null>(null);
   const [deleteId, setDeleteId] = useState<number | null>(null);
 
   const fetchEntries = useCallback(async () => {
@@ -108,14 +109,14 @@ export default function AdminDashboard() {
       body: JSON.stringify({ nextIncrement: val }),
     });
     const data = await res.json();
-    setIpMsg(data.success ? `Next IP set to 10.0.0.${val}/32` : "Failed to set.");
+    setIpMsg(data.success ? `Next IP starts at 10.0.0.${val}/32 and will auto-increment from there.` : "Failed to set.");
     setNextIpValue("");
   };
 
-  const handleClearIncrement = async () => {
-    const res = await fetch("/api/admin/set-increment", { method: "DELETE" });
-    const data = await res.json();
-    setIpMsg(data.success ? "Override cleared. Using auto-increment." : "Failed to clear.");
+  const handleCopyKey = (entry: Entry) => {
+    navigator.clipboard.writeText(entry.publicKey);
+    setCopiedId(entry.id);
+    setTimeout(() => setCopiedId(null), 1500);
   };
 
   const modalVariants = {
@@ -163,19 +164,8 @@ export default function AdminDashboard() {
           >
             Set
           </motion.button>
-          <motion.button
-            onClick={handleClearIncrement}
-            className="py-2 px-4 bg-[var(--color4)] text-[var(--background)] rounded-xl hover:cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Use Auto
-          </motion.button>
           {ipMsg && <span className="text-sm font-medium">{ipMsg}</span>}
         </div>
-        <p className="text-xs mt-2 opacity-60">
-          &ldquo;Set&rdquo; overrides the next assigned IP. &ldquo;Use Auto&rdquo; clears the override and resumes auto-increment from the highest existing value.
-        </p>
       </div>
 
       {/* Entries table */}
@@ -219,11 +209,21 @@ export default function AdminDashboard() {
                   >
                     <td className="py-2 px-3">{entry.teamName || <span className="opacity-40">—</span>}</td>
                     <td className="py-2 px-3 font-mono">
-                      <span title={entry.publicKey}>
-                        {entry.publicKey.length > 20
-                          ? entry.publicKey.slice(0, 20) + "…"
-                          : entry.publicKey}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span title={entry.publicKey}>
+                          {entry.publicKey.length > 20
+                            ? entry.publicKey.slice(0, 20) + "…"
+                            : entry.publicKey}
+                        </span>
+                        <motion.button
+                          onClick={() => handleCopyKey(entry)}
+                          className="py-0.5 px-2 bg-[var(--color4)] text-[var(--background)] rounded-md text-xs hover:cursor-pointer shrink-0"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          {copiedId === entry.id ? "Copied!" : "Copy"}
+                        </motion.button>
+                      </div>
                     </td>
                     <td className="py-2 px-3 font-mono">10.0.0.{entry.ipIncrement}/32</td>
                     <td className="py-2 px-3 opacity-60">
