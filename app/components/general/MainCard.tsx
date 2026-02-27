@@ -21,9 +21,6 @@ const MainCard = () => {
     <motion.div
       className="flex fixed flex-col h-auto w-auto align-middle justify-center items-center bg-[var(--color2)] p-[5%] rounded-2xl"
       style={{ boxShadow: "var(--color5) 0px 2px 10px" }}
-      initial={{ scale: 1 }}
-      whileHover={{ scale: 1.05 }}
-      transition={{ duration: 0.9, type: "spring" }}
     >
       <h1 className="text-5xl text-center my-3">Welcome to SEE 2025!</h1>
       <h1 className="text-2xl text-center my-1">

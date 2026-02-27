@@ -38,7 +38,7 @@ const InputFields = () => {
       style={{ boxShadow: "var(--background) 0px 2px 12px" }}
     >
       <div className="flex align-middle items-center justify-evenly mb-7">
-        <h1 className="text-2xl">Wireguard Private Key:</h1>
+        <h1 className="text-2xl">Wireguard Public Key:</h1>
         <motion.input
           initial={{ background: "#E1E1E1" }}
           whileHover={{ background: "#BDBDBD" }}
